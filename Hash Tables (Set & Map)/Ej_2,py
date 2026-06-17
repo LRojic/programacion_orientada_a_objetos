@@ -1,0 +1,68 @@
+"""
+Tenemos ocho objetos con los códigos hash 
+217, 209, 265, 226, 234, 201, 207 y 223 
+(es lo que devolvió la función hash del ejercicio anterior,
+ antes de hacer el módulo). Los vamos a guardar en una hash 
+ table que arranca vacía, usando un arreglo de tamaño 8 
+ (o sea, 8 buckets) y encadenamiento separado (separate chaining) 
+ para resolver las colisiones.
+  Calculá las longitudes de las cadenas que se
+arman después de insertar todos estos objetos.
+
+
+
+Resolución
+
+La tabla hash tiene 8 buckets, por lo que el índice de cada elemento se 
+calcula con la fórmula:
+
+
+Indice=hash%8
+
+Cálculos:
+
+217 % 8 = 1
+209 % 8 = 1
+265 % 8 = 1
+226 % 8 = 2
+234 % 8 = 2
+201 % 8 = 1
+207 % 8 = 7
+223 % 8 = 7
+
+Como la tabla utiliza separate chaining, los elementos que obtienen el mismo
+ índice se almacenan en una misma cadena.
+
+La tabla queda así:
+
+Bucket 0 → vacío
+
+Bucket 1 → 217 → 209 → 265 → 201
+
+Bucket 2 → 226 → 234
+
+Bucket 3 → vacío
+
+Bucket 4 → vacío
+
+Bucket 5 → vacío
+
+Bucket 6 → vacío
+
+Bucket 7 → 207 → 223
+
+Longitud de las cadenas:
+
+Bucket 0 → 0
+Bucket 1 → 4
+Bucket 2 → 2
+Bucket 3 → 0
+Bucket 4 → 0
+Bucket 5 → 0
+Bucket 6 → 0
+Bucket 7 → 2
+
+Respuesta final: las longitudes de las cadenas son 0, 4, 2, 0, 0, 0, 0 y 2, 
+respectivamente para los buckets del 0 al 7.
+"""
+
