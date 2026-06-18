@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "nombre": "Bulbasaur",
+        "tipo": "Planta",
+        "poder_combate": 450
+    },
+    {
+        "id": 4,
+        "nombre": "Charmander",
+        "tipo": "Fuego",
+        "poder_combate": 480
+    },
+    {
+        "id": 7,
+        "nombre": "Squirtle",
+        "tipo": "Agua",
+        "poder_combate": 470
+    },
+    {
+        "id": 10,
+        "nombre": "Caterpie",
+        "tipo": "Bicho",
+        "poder_combate": 120
+    },
+    {
+        "id": 16,
+        "nombre": "Pidgey",
+        "tipo": "Normal/Volador",
+        "poder_combate": 210
+    },
+    {
+        "id": 19,
+        "nombre": "Rattata",
+        "tipo": "Normal",
+        "poder_combate": 180
+    },
+    {
+        "id": 25,
+        "nombre": "Pikachu",
+        "tipo": "Electrico",
+        "poder_combate": 650
+    },
+    {
+        "id": 27,
+        "nombre": "Sandshrew",
+        "tipo": "Tierra",
+        "poder_combate": 560
+    },
+    {
+        "id": 37,
+        "nombre": "Vulpix",
+        "tipo": "Fuego",
+        "poder_combate": 620
+    },
+    {
+        "id": 39,
+        "nombre": "Jigglypuff",
+        "tipo": "Normal/Hada",
+        "poder_combate": 580
+    },
+    {
+        "id": 52,
+        "nombre": "Meowth",
+        "tipo": "Normal",
+        "poder_combate": 600
+    },
+    {
+        "id": 54,
+        "nombre": "Psyduck",
+        "tipo": "Agua",
+        "poder_combate": 700
+    },
+    {
+        "id": 58,
+        "nombre": "Growlithe",
+        "tipo": "Fuego",
+        "poder_combate": 950
+    },
+    {
+        "id": 63,
+        "nombre": "Abra",
+        "tipo": "Psiquico",
+        "poder_combate": 900
+    },
+    {
+        "id": 66,
+        "nombre": "Machop",
+        "tipo": "Lucha",
+        "poder_combate": 980
+    },
+    {
+        "id": 94,
+        "nombre": "Gengar",
+        "tipo": "Fantasma/Veneno",
+        "poder_combate": 2200
+    },
+    {
+        "id": 130,
+        "nombre": "Gyarados",
+        "tipo": "Agua/Volador",
+        "poder_combate": 2800
+    },
+    {
+        "id": 143,
+        "nombre": "Snorlax",
+        "tipo": "Normal",
+        "poder_combate": 2600
+    },
+    {
+        "id": 149,
+        "nombre": "Dragonite",
+        "tipo": "Dragon/Volador",
+        "poder_combate": 3100
+    },
+    {
+        "id": 150,
+        "nombre": "Mewtwo",
+        "tipo": "Psiquico",
+        "poder_combate": 3200
+    }
+]
