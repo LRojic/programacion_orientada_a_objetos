@@ -30,7 +30,7 @@ class Pokemon:
 if __name__ == "__main__":
     ruta = os.path.join(os.path.dirname(__file__), "pokemones.json")
 
-    with open(ruta, "r", encoding="utf-8") as file:
+    with open(ruta, "r") as file:
         pokemones_data = json.load(file)
 
     pokemones = []
