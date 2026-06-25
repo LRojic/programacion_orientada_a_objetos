@@ -9,6 +9,7 @@ Muy fuerte    2000–3200
 import os
 import json
 from menu import mostrar_menu
+from Estructuras import Queue, Nodo, ListaEnlazada
 
 os.system("cls") # Limpiar la terminal
 
@@ -49,5 +50,5 @@ if __name__ == "__main__":
         medallas = []
         for m in range(2): # Solo se necesitan 2 medallas para el menú
             medallas.append(medallas_data[m])
-
+            
     mostrar_menu(pokemones, medallas)

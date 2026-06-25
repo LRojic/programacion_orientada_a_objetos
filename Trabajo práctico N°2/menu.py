@@ -2,7 +2,7 @@ from jugador import Entrenador
 import os, time
 
 def mostrar_menu(pokemones, medallas):
-    ash = Entrenador()
+    ash = Entrenador() # es mas corto
     while True:
         
         os.system("cls") # Limpiar la terminal 
@@ -10,10 +10,10 @@ def mostrar_menu(pokemones, medallas):
         print("\n===== MENÚ =====")
         print("1. Ver Pokédex")
         print("2. Mostrar medallas")
-        print("3. Prueba entrenador")
+        print("3. capturar pokemon")
         print("4. Ver equipo principal")
         print("5. Ver PC")
-        print("6. capturar pokemon")
+        print("6. ir al centro pokemon ")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -28,18 +28,6 @@ def mostrar_menu(pokemones, medallas):
             for m in medallas:
                 print(m)
 
-        elif opcion == "3":
-            print("\n--- Prueba entrenador ---")
-
-            ash.capturar_pokemon("Pikachu")
-            ash.capturar_pokemon("Charmander")
-            ash.capturar_pokemon("Squirtle")
-            ash.capturar_pokemon("Bulbasaur")
-            ash.capturar_pokemon("Pidgeotto")
-            ash.capturar_pokemon("Snorlax")
-            ash.capturar_pokemon("Dragonite")
-
-
         elif opcion == "4":
             ash.mostrar_equipo()
 
@@ -47,15 +35,18 @@ def mostrar_menu(pokemones, medallas):
         elif opcion == "5":
             ash.mostrar_pc()
 
-        elif opcion == "6":
+        elif opcion == "3":
             ash.intento_de_captura(pokemones)
+
+        elif opcion == "6":
+            ash.sanar_equipo()
 
 
         elif opcion == "0":
-            print("Saliendo...")
+            print(pokemones)
             break
 
         else:
             print("Opción inválida.")
         
-        x = input("\n precione enter para volver al menu ")
+        input("\n precione enter para volver al menu ")
