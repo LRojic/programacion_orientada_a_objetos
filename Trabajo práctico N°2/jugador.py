@@ -8,7 +8,7 @@ Transferencias (stack)
 Después desde main.py importás todo.
 """
 import time, random, os
-from Estructuras import Queue, Nodo, ListaEnlazada
+from Estructuras import Queue, Nodo, ListaEnlazada, Stack
 
 
 class Entrenador:
@@ -16,13 +16,15 @@ class Entrenador:
         self.equipo = []
         self.pc = ListaEnlazada()
         self.centro_pokemon = Queue()
+        self.transferencias = Stack()
 
     def intento_de_captura(self, todosLosPokemonesLista):
         print("\nBuscando Pokémon salvaje...")
-
+        
+        """  BARRA DE CARGA
         for i in range(11):
             print(f"\rProgreso: {i * 10}%", end="", flush=True)
-            time.sleep(0.5)
+            time.sleep(0.5)"""
 
         poke = random.choice(todosLosPokemonesLista)
 
@@ -55,7 +57,7 @@ class Entrenador:
     def sanar_equipo(self):
 
         if len(self.equipo) == 0:
-            print("No hay Pokémon para curar.")
+            print("\nNo hay Pokémon para curar.")
             return
 
         print("\n--- Centro Pokémon ---")
@@ -78,3 +80,31 @@ class Entrenador:
             print(f"{pokemon} fue curado.\n")
 
         print("Todos los Pokémon fueron curados.")
+
+    def transferir_pokemon(self, nombre):
+
+        if self.pc.eliminar(nombre):
+
+            self.transferencias.push(nombre)
+
+            # Mantener solo las últimas 5 transferencias
+            if self.transferencias.size() > 5:
+                self.transferencias.items.pop(0)
+
+            print(f"{nombre} fue transferido al Profesor Oak.")
+        else:
+            print("Ese Pokémon no está en la PC.")
+
+    def deshacer_transferencia(self):
+
+        if self.transferencias.isEmpty():
+            print("No hay transferencias para deshacer.")
+            return
+
+        pokemon = self.transferencias.pop()
+        self.pc.agregar(pokemon)
+
+        print(f"{pokemon} volvió a la PC.")
+    
+
+

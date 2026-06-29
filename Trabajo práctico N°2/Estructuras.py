@@ -45,3 +45,60 @@ class ListaEnlazada:
         while actual:
             print(actual.pokemon)
             actual = actual.siguiente
+            
+    def esta_vacia(self):
+        return self.cabeza is None
+    
+    def eliminar(self, pokemon):
+
+        if self.cabeza is None:
+            return False
+
+        if self.cabeza.pokemon == pokemon:
+            self.cabeza = self.cabeza.siguiente
+            return True
+
+        anterior = self.cabeza
+        actual = self.cabeza.siguiente
+
+        while actual is not None:
+
+            if actual.pokemon == pokemon:
+                anterior.siguiente = actual.siguiente
+                return True
+
+            anterior = actual
+            actual = actual.siguiente
+
+        return False
+    
+    def obtener_lista(self):
+        lista = []
+
+        actual = self.cabeza
+
+        while actual is not None:
+            lista.append(actual.pokemon)
+            actual = actual.siguiente
+
+        return lista
+
+class Stack:
+
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[-1]
+
+    def isEmpty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)

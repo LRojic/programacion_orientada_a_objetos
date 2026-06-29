@@ -14,6 +14,8 @@ def mostrar_menu(pokemones, medallas):
         print("4. Ver equipo principal")
         print("5. Ver PC")
         print("6. ir al centro pokemon ")
+        print("7. Transferir Pokémon al Profesor Oak")
+        print("8. Deshacer última transferencia")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -40,6 +42,33 @@ def mostrar_menu(pokemones, medallas):
 
         elif opcion == "6":
             ash.sanar_equipo()
+        
+        elif opcion == "7":
+
+            if ash.pc.esta_vacia():
+                print("La PC está vacía.")
+            else:
+
+                pokemones_pc = ash.pc.obtener_lista()
+
+                print("\n--- PC ---")
+                for i, pokemon in enumerate(pokemones_pc, start=1):
+                    print(f"{i}. {pokemon}")
+
+                try:
+                    opcion_pokemon = int(input("\nSeleccione un Pokémon: "))
+
+                    if 1 <= opcion_pokemon <= len(pokemones_pc):
+                        nombre = pokemones_pc[opcion_pokemon - 1]
+                        ash.transferir_pokemon(nombre)
+                    else:
+                        print("Opción inválida.")
+
+                except ValueError:
+                    print("Ingrese un número.")
+
+        elif opcion == "8":
+            ash.deshacer_transferencia()
 
 
         elif opcion == "0":
