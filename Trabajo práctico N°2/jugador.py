@@ -7,9 +7,10 @@ Transferencias (stack)
 
 Después desde main.py importás todo.
 """
-import time, random, os
+import time, random, os, json
 from Estructuras import Queue, Nodo, ListaEnlazada, Stack
-
+with open(os.path.join(os.path.dirname(__file__), "gimnasios.json"), "r") as file:
+    gimnasios_data = json.load(file)
 
 class Entrenador:
     def __init__(self):
@@ -19,7 +20,7 @@ class Entrenador:
         self.transferencias = Stack()
 
     def intento_de_captura(self, todosLosPokemonesLista):
-        print("\nBuscando Pokémon salvaje...")
+        print("\n Buscando Pokémon salvaje...")
         
         """  BARRA DE CARGA
         for i in range(11):
@@ -28,7 +29,7 @@ class Entrenador:
 
         poke = random.choice(todosLosPokemonesLista)
 
-        print(f"\n¡Apareció {poke.nombre}!")
+        print(f"\n¡Apareció {poke.nombre} Salvaje - PC:  {poke.poder_combate}!")
         print("¡Capturado exitosamente!")
 
         if len(self.equipo) < 6:
@@ -81,17 +82,52 @@ class Entrenador:
 
         print("Todos los Pokémon fueron curados.")
 
-    def transferir_pokemon(self, nombre):
+    def desafiar_gimnasio(self, medallas):
+        print("\n=== Gimnasios ===")
 
-        if self.pc.eliminar(nombre):
+        for gimnasio in gimnasios_data:
+            print(f'{gimnasio["id"]}. {gimnasio["nombre"]} - Líder: {gimnasio["lider"]}')
 
-            self.transferencias.push(nombre)
+        opcion = int(input("\nElegí un gimnasio: "))
+
+        gimnasio = None
+
+        for g in gimnasios_data:
+            if g["id"] == opcion:
+                gimnasio = g
+                break
+
+        if gimnasio is None:
+            print("Gimnasio inexistente.")
+            return
+
+        print(f"\nEntraste al {gimnasio['nombre']}.")
+        print(f"¡{gimnasio['lider']} te desafía a una batalla!")
+
+        time.sleep(0.5)
+
+        if random.choice([True, False]):
+
+            print("\n¡Ganaste la batalla!")
+
+            if medallas.agregar(gimnasio["medalla"]):
+                print(f"Obtuviste la {gimnasio['medalla']}.")
+            else:
+                print(f"Ya tenías la {gimnasio['medalla']}.")
+
+        else:
+            print("\nPerdiste la batalla...")
+    def transferir_pokemon(self, pokemon):
+
+        if self.pc.eliminar(pokemon):
+
+            self.transferencias.push(pokemon)
 
             # Mantener solo las últimas 5 transferencias
             if self.transferencias.size() > 5:
                 self.transferencias.items.pop(0)
 
-            print(f"{nombre} fue transferido al Profesor Oak.")
+            print(f"{pokemon.id} - {pokemon.nombre} fue transferido al Profesor Oak.")
         else:
             print("Ese Pokémon no está en la PC.")
 

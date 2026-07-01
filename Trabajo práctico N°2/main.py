@@ -9,7 +9,7 @@ Muy fuerte    2000–3200
 import os
 import json
 from menu import mostrar_menu
-from Estructuras import Queue, Nodo, ListaEnlazada
+from Estructuras import HashSet
 
 os.system("cls") # Limpiar la terminal
 
@@ -45,10 +45,12 @@ if __name__ == "__main__":
         )
         pokemones.append(pokemon)
         
-    with open(os.path.join(os.path.dirname(__file__), "medallas.json"), "r",) as file2:
+    with open(os.path.join(os.path.dirname(__file__), "medallas.json"), "r") as file2:
         medallas_data = json.load(file2)
-        medallas = []
-        for m in range(2): # Solo se necesitan 2 medallas para el menú
-            medallas.append(medallas_data[m])
+
+    medallas = HashSet()
+
+    for m in range(2):
+        medallas.agregar(medallas_data[m])
             
     mostrar_menu(pokemones, medallas)

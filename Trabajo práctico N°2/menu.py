@@ -16,7 +16,8 @@ def mostrar_menu(pokemones, medallas):
         print("6. ir al centro pokemon ")
         print("7. Transferir Pokémon al Profesor Oak")
         print("8. Deshacer última transferencia")
-        print("9. Ordenar PC ")
+        print("9: Desafiar gimnasio")
+        print("10. Ordenar PC ")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -27,9 +28,7 @@ def mostrar_menu(pokemones, medallas):
                 print(pokemon)
 
         elif opcion == "2":
-            print("\n--- Lista de Medallas ---")
-            for m in medallas:
-                print(m)
+            medallas.mostrar()
 
         elif opcion == "4":
             ash.mostrar_equipo()
@@ -73,8 +72,11 @@ def mostrar_menu(pokemones, medallas):
 
         elif opcion == "8":
             ash.deshacer_transferencia()
-            
+
         elif opcion == "9":
+            ash.desafiar_gimnasio(medallas)
+            
+        elif opcion == "10":
             if ash.pc.esta_vacia():
                 print("La PC está vacía.")
             else:

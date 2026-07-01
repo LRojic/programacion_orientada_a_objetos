@@ -15,7 +15,6 @@ class Queue:
     def mostrar(self):
         print(self.cola)
 
-
 class Nodo:
     def __init__(self, pokemon):
         self.pokemon = pokemon
@@ -106,3 +105,45 @@ class Stack:
 
     def size(self):
         return len(self.items)
+
+class HashSet:
+    def __init__(self, capacidad=10):
+        self.capacidad = capacidad
+        self.buckets = [[] for _ in range(capacidad)]
+
+    def _hash(self, key):
+        return hash(key) % self.capacidad
+
+    def agregar(self, key):
+        indice = self._hash(key)
+
+        if key not in self.buckets[indice]:
+            self.buckets[indice].append(key)
+            return True
+
+        return False
+
+    def buscar(self, key):
+        indice = self._hash(key)
+        return key in self.buckets[indice]
+
+    def eliminar(self, key):
+        indice = self._hash(key)
+
+        if key in self.buckets[indice]:
+            self.buckets[indice].remove(key)
+            return True
+
+        return False
+
+    def mostrar(self):
+        print("\n--- Lista de Medallas ---")
+
+        vacio = True
+        for bucket in self.buckets:
+            for medalla in bucket:
+                print(medalla)
+                vacio = False
+
+        if vacio:
+            print("No tenés ninguna medalla.")

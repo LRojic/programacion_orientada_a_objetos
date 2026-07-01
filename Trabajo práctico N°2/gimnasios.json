@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "nombre": "Gimnasio de Ciudad Plateada",
+        "lider": "Brock",
+        "medalla": "Medalla Roca"
+    },
+    {
+        "id": 2,
+        "nombre": "Gimnasio de Ciudad Celeste",
+        "lider": "Misty",
+        "medalla": "Medalla Cascada"
+    },
+    {
+        "id": 3,
+        "nombre": "Gimnasio de Ciudad Carmín",
+        "lider": "Lt. Surge",
+        "medalla": "Medalla Trueno"
+    },
+    {
+        "id": 4,
+        "nombre": "Gimnasio de Ciudad Azulona",
+        "lider": "Erika",
+        "medalla": "Medalla Arcoíris"
+    },
+    {
+        "id": 5,
+        "nombre": "Gimnasio de Ciudad Fucsia",
+        "lider": "Koga",
+        "medalla": "Medalla Alma"
+    },
+    {
+        "id": 6,
+        "nombre": "Gimnasio de Ciudad Azafrán",
+        "lider": "Sabrina",
+        "medalla": "Medalla Pantano"
+    },
+    {
+        "id": 7,
+        "nombre": "Gimnasio de Isla Canela",
+        "lider": "Blaine",
+        "medalla": "Medalla Volcán"
+    },
+    {
+        "id": 8,
+        "nombre": "Gimnasio de Ciudad Verde",
+        "lider": "Giovanni",
+        "medalla": "Medalla Tierra"
+    }
+]
