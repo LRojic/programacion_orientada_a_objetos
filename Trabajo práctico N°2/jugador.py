@@ -32,10 +32,10 @@ class Entrenador:
         print("¡Capturado exitosamente!")
 
         if len(self.equipo) < 6:
-            self.equipo.append(poke.nombre)
+            self.equipo.append(poke)
             print(f"{poke.nombre} agregado al equipo.")
         else:
-            self.pc.agregar(poke.nombre)
+            self.pc.agregar(poke)
             print(f"Equipo lleno. {poke.nombre} enviado a la PC.")
             
     def mostrar_equipo(self):
@@ -48,7 +48,7 @@ class Entrenador:
             return
 
         for pokemon in self.equipo:
-            print(pokemon)
+            print(pokemon.nombre)
 
     def mostrar_pc(self):
         print("\n--- PC ---")
@@ -65,7 +65,7 @@ class Entrenador:
         # Ingresan a la cola
         for pokemon in self.equipo:
             self.centro_pokemon.encolar(pokemon)
-            print(f"{pokemon} ingresó a la cola.")
+            print(f"{pokemon.nombre} - {pokemon.tipo} ingresó a la cola.")
 
         print("\nComenzando curación...\n")
 
@@ -74,10 +74,10 @@ class Entrenador:
 
             pokemon = self.centro_pokemon.desencolar()
 
-            print(f"Curando a {pokemon}...")
+            print(f"Curando a {pokemon.nombre} - {pokemon.tipo}...")
             time.sleep(1)  # simula tiempo de curación
 
-            print(f"{pokemon} fue curado.\n")
+            print(f"{pokemon.nombre} - {pokemon.tipo} fue curado.\n")
 
         print("Todos los Pokémon fueron curados.")
 
@@ -106,5 +106,86 @@ class Entrenador:
 
         print(f"{pokemon} volvió a la PC.")
     
+    def ordenar_pc_nombre(self):
 
+        lista = self.pc.obtener_lista()
 
+        n = len(lista)
+
+        for i in range(n):
+            for j in range(n - i - 1):
+
+                if lista[j].nombre > lista[j + 1].nombre:
+                    lista[j], lista[j + 1] = lista[j + 1], lista[j]
+
+        self.pc.limpiar()
+
+        for pokemon in lista:
+            self.pc.agregar(pokemon)
+
+        print("\n--- PC ordenada por nombre ---")
+        for pokemon in lista:
+            print(f"{pokemon.nombre}")
+
+    def ordenar_pc_tipo(self):
+
+        lista = self.pc.obtener_lista()
+
+        n = len(lista)
+
+        for i in range(n):
+
+            minimo = i
+
+            for j in range(i + 1, n):
+
+                if lista[j].tipo < lista[minimo].tipo:
+                    minimo = j
+
+            lista[i], lista[minimo] = lista[minimo], lista[i]
+
+        self.pc.limpiar()
+
+        for pokemon in lista:
+            self.pc.agregar(pokemon)
+
+        print("\n--- PC ordenada por tipo ---")
+        for pokemon in lista:
+            print(f"{pokemon.nombre} - {pokemon.tipo}")
+    
+    def quick_sort_poder(self, lista):
+        """Quick Sort (por poder de combate)"""
+
+        if len(lista) <= 1:
+            return lista
+
+        pivote = lista[0]
+
+        mayores = []
+        menores = []
+
+        for pokemon in lista[1:]:
+
+            if pokemon.poder_combate > pivote.poder_combate:
+                mayores.append(pokemon)
+            else:
+                menores.append(pokemon)
+
+        return self.quick_sort_poder(mayores) + [pivote] + self.quick_sort_poder(menores)
+
+    #Y el método que usa ese algoritmo:
+
+    def ordenar_pc_poder(self):
+
+        lista = self.pc.obtener_lista()
+
+        lista = self.quick_sort_poder(lista)
+
+        self.pc.limpiar()
+
+        for pokemon in lista:
+            self.pc.agregar(pokemon)
+
+        print("\n--- PC ordenada por poder de combate ---")
+        for pokemon in lista:
+            print(f"{pokemon.nombre} - CP: {pokemon.poder_combate}")

@@ -38,13 +38,6 @@ class ListaEnlazada:
             actual = actual.siguiente
 
         actual.siguiente = nuevo
-
-    def mostrar(self):
-        actual = self.cabeza
-
-        while actual:
-            print(actual.pokemon)
-            actual = actual.siguiente
             
     def esta_vacia(self):
         return self.cabeza is None
@@ -82,6 +75,17 @@ class ListaEnlazada:
             actual = actual.siguiente
 
         return lista
+    
+    def limpiar(self):
+        self.cabeza = None
+        
+    def mostrar(self):
+
+        actual = self.cabeza
+
+        while actual is not None:
+            print(actual.pokemon.nombre)
+            actual = actual.siguiente
 
 class Stack:
 

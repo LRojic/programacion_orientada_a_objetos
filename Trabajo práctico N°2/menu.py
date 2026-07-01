@@ -16,6 +16,7 @@ def mostrar_menu(pokemones, medallas):
         print("6. ir al centro pokemon ")
         print("7. Transferir Pokémon al Profesor Oak")
         print("8. Deshacer última transferencia")
+        print("9. Ordenar PC ")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -35,7 +36,10 @@ def mostrar_menu(pokemones, medallas):
 
 
         elif opcion == "5":
-            ash.mostrar_pc()
+            if ash.pc.esta_vacia():
+                print("La PC está vacía.")
+            else:
+                ash.mostrar_pc()
 
         elif opcion == "3":
             ash.intento_de_captura(pokemones)
@@ -69,6 +73,33 @@ def mostrar_menu(pokemones, medallas):
 
         elif opcion == "8":
             ash.deshacer_transferencia()
+            
+        elif opcion == "9":
+            if ash.pc.esta_vacia():
+                print("La PC está vacía.")
+            else:
+                while True:
+                    print("\n--- Ordenar PC ---")
+                    print("1. Por nombre")
+                    print("2. Por tipo")
+                    print("3. Por poder de combate")
+                    print("0. Volver al menú principal")
+
+                    opcion_orden = input("Seleccione una opción: ")
+
+                    if opcion_orden == "1":
+                        ash.ordenar_pc_nombre()
+                        break
+                    elif opcion_orden == "2":
+                        ash.ordenar_pc_tipo()
+                        break
+                    elif opcion_orden == "3":
+                        ash.ordenar_pc_poder()
+                        break
+                    elif opcion_orden == "0":
+                        break
+                    else:
+                        print("Opción inválida.")
 
 
         elif opcion == "0":
