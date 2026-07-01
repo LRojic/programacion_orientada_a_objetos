@@ -6,16 +6,34 @@
         "poder_combate": 450
     },
     {
+        "id": 3,
+        "nombre": "Venusaur",
+        "tipo": "Planta/Veneno",
+        "poder_combate": 820
+    },
+    {
         "id": 4,
         "nombre": "Charmander",
         "tipo": "Fuego",
         "poder_combate": 480
     },
     {
+        "id": 6,
+        "nombre": "Charizard",
+        "tipo": "Fuego/Volador",
+        "poder_combate": 2300
+    },
+    {
         "id": 7,
         "nombre": "Squirtle",
         "tipo": "Agua",
         "poder_combate": 470
+    },
+    {
+        "id": 9,
+        "nombre": "Blastoise",
+        "tipo": "Agua",
+        "poder_combate": 2600
     },
     {
         "id": 10,
@@ -84,10 +102,22 @@
         "poder_combate": 900
     },
     {
+        "id": 65,
+        "nombre": "Alakazam",
+        "tipo": "Psiquico",
+        "poder_combate": 2900
+    },
+    {
         "id": 66,
         "nombre": "Machop",
         "tipo": "Lucha",
         "poder_combate": 980
+    },
+    {
+        "id": 68,
+        "nombre": "Machamp",
+        "tipo": "Lucha",
+        "poder_combate": 3000
     },
     {
         "id": 94,

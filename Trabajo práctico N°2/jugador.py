@@ -1,16 +1,13 @@
-""" toda la lógica del entrenador:
+""" lógica del entrenador:
 
 Equipo activo (lista de máximo 6)
 PC (lista enlazada)
 Centro Pokémon (queue)
 Transferencias (stack)
-
-Después desde main.py importás todo.
 """
-import time, random, os, json
-from Estructuras import Queue, Nodo, ListaEnlazada, Stack
-with open(os.path.join(os.path.dirname(__file__), "gimnasios.json"), "r") as file:
-    gimnasios_data = json.load(file)
+import time, random
+from Estructuras import Queue, ListaEnlazada, Stack
+
 
 class Entrenador:
     def __init__(self):
@@ -20,7 +17,7 @@ class Entrenador:
         self.transferencias = Stack()
 
     def intento_de_captura(self, todosLosPokemonesLista):
-        print("\n Buscando Pokémon salvaje...")
+        print("\nBuscando Pokémon salvaje...")
         
         """  BARRA DE CARGA
         for i in range(11):
@@ -29,7 +26,7 @@ class Entrenador:
 
         poke = random.choice(todosLosPokemonesLista)
 
-        print(f"\n¡Apareció {poke.nombre} Salvaje - PC:  {poke.poder_combate}!")
+        print(f"\n¡Apareció {poke.nombre}!")
         print("¡Capturado exitosamente!")
 
         if len(self.equipo) < 6:
@@ -82,52 +79,19 @@ class Entrenador:
 
         print("Todos los Pokémon fueron curados.")
 
-    def desafiar_gimnasio(self, medallas):
-        print("\n=== Gimnasios ===")
+    # métodos para transferir y deshacer transferencias:
 
-        for gimnasio in gimnasios_data:
-            print(f'{gimnasio["id"]}. {gimnasio["nombre"]} - Líder: {gimnasio["lider"]}')
+    def transferir_pokemon(self, nombre):
 
-        opcion = int(input("\nElegí un gimnasio: "))
+        if self.pc.eliminar(nombre):
 
-        gimnasio = None
-
-        for g in gimnasios_data:
-            if g["id"] == opcion:
-                gimnasio = g
-                break
-
-        if gimnasio is None:
-            print("Gimnasio inexistente.")
-            return
-
-        print(f"\nEntraste al {gimnasio['nombre']}.")
-        print(f"¡{gimnasio['lider']} te desafía a una batalla!")
-
-        time.sleep(0.5)
-
-        if random.choice([True, False]):
-
-            print("\n¡Ganaste la batalla!")
-
-            if medallas.agregar(gimnasio["medalla"]):
-                print(f"Obtuviste la {gimnasio['medalla']}.")
-            else:
-                print(f"Ya tenías la {gimnasio['medalla']}.")
-
-        else:
-            print("\nPerdiste la batalla...")
-    def transferir_pokemon(self, pokemon):
-
-        if self.pc.eliminar(pokemon):
-
-            self.transferencias.push(pokemon)
+            self.transferencias.push(nombre)
 
             # Mantener solo las últimas 5 transferencias
             if self.transferencias.size() > 5:
                 self.transferencias.items.pop(0)
 
-            print(f"{pokemon.id} - {pokemon.nombre} fue transferido al Profesor Oak.")
+            print(f"{nombre} fue transferido al Profesor Oak.")
         else:
             print("Ese Pokémon no está en la PC.")
 
@@ -141,6 +105,8 @@ class Entrenador:
         self.pc.agregar(pokemon)
 
         print(f"{pokemon} volvió a la PC.")
+    
+    # metodos para ordenar la PC:
     
     def ordenar_pc_nombre(self):
 
@@ -209,8 +175,6 @@ class Entrenador:
 
         return self.quick_sort_poder(mayores) + [pivote] + self.quick_sort_poder(menores)
 
-    #Y el método que usa ese algoritmo:
-
     def ordenar_pc_poder(self):
 
         lista = self.pc.obtener_lista()
@@ -225,3 +189,38 @@ class Entrenador:
         print("\n--- PC ordenada por poder de combate ---")
         for pokemon in lista:
             print(f"{pokemon.nombre} - CP: {pokemon.poder_combate}")
+            
+    # modulo 4:    
+        
+    def buscar_pokemon_equipo(self, nombre):
+        """va 1 por 1, complejidad O(n) wacho"""
+
+        for pokemon in self.equipo:
+
+            if pokemon.nombre.lower() == nombre.lower():
+                print(f"{pokemon.nombre} está en el equipo.")
+                return pokemon
+
+        print("Ese Pokémon no está en el equipo.")
+        return None
+    
+    def buscar_pokedex(self, lista, id_buscado):
+        """elimina la mitad de la lista en cada iteración, complejidad O(log n), mas tranki piola sin berretin"""
+
+        izquierda = 0
+        derecha = len(lista) - 1
+
+        while izquierda <= derecha:
+
+            medio = (izquierda + derecha) // 2
+
+            if lista[medio].id == id_buscado:
+                return lista[medio]
+
+            elif id_buscado < lista[medio].id:
+                derecha = medio - 1
+
+            else:
+                izquierda = medio + 1
+
+        return None

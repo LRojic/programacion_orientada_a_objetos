@@ -18,6 +18,8 @@ def mostrar_menu(pokemones, medallas):
         print("8. Deshacer última transferencia")
         print("9: Desafiar gimnasio")
         print("10. Ordenar PC ")
+        print("11. Buscar Pokémon por nombre")
+        print("12. Buscar Pokémon por ID en la Pokedex")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -102,7 +104,20 @@ def mostrar_menu(pokemones, medallas):
                         break
                     else:
                         print("Opción inválida.")
+                        
+        elif opcion == "11":
+            nombre = input("Nombre del Pokémon: ")
+            ash.buscar_pokemon_equipo(nombre)
+            
+        elif opcion == "12":
+            id = int(input("Ingrese ID: "))
 
+            pokemon_buscado = ash.buscar_pokedex(pokemones, id)
+
+            if pokemon_buscado:
+                print(f"Encontrado: {pokemon_buscado.nombre}")
+            else:
+                print("No existe ese Pokémon.")
 
         elif opcion == "0":
             print(pokemones)

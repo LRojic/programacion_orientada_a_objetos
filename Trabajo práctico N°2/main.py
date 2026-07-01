@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     medallas = HashSet()
 
-    for m in range(2):
+    for m in range(0):
         medallas.agregar(medallas_data[m])
             
     mostrar_menu(pokemones, medallas)
