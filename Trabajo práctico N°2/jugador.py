@@ -14,10 +14,12 @@ with open(os.path.join(os.path.dirname(__file__), "gimnasios.json"), "r") as fil
 def pedir_entero(mensaje, min=None, max=None):
     while True:
         try:
+            valor = int(input(mensaje))
         except ValueError:
             print(" Debe ingresar un número entero.")
             continue
         if (min is not None and valor < min) or (max is not None and valor > max):
+            print(f"El número debe estar entre {min} y {max}.")
             continue
         return valor
     
@@ -93,6 +95,7 @@ class Entrenador:
 
     def desafiar_gimnasio(self, medallas):
             print("\n=== Gimnasios ===")
+
             for gimnasio in gimnasios_data:
                 print(f'{gimnasio["id"]}. {gimnasio["nombre"]} - Líder: {gimnasio["lider"]}')
 
@@ -100,23 +103,29 @@ class Entrenador:
 
             gimnasio = None
 
+            for g in gimnasios_data:
                 if g["id"] == opcion:
+                    gimnasio = g
                     break
 
             if gimnasio is None:
+                print("Gimnasio inexistente.")
                 return
 
             print(f"\nEntraste al {gimnasio['nombre']}.")
             print(f"¡{gimnasio['lider']} te desafía a una batalla!")
 
+            time.sleep(0.5)
 
             if random.choice([True, False]):
+
                 print("\n¡Ganaste la batalla!")
 
                 if medallas.agregar(gimnasio["medalla"]):
                     print(f"Obtuviste la {gimnasio['medalla']}.")
                 else:
                     print(f"Ya tenías la {gimnasio['medalla']}.")
+
             else:
                 print("\nPerdiste la batalla...")
     # métodos para transferir y deshacer transferencias:
