@@ -58,7 +58,7 @@ def mostrar_menu(pokemones, medallas):
         print("8. Deshacer última transferencia")
         print("9: Desafiar gimnasio")
         print("10. Ordenar PC ")
-        print("11. Buscar Pokémon por nombre")
+        print("11. Buscar Pokémon por nombre en el equipo")
         print("12. Buscar Pokémon por ID en la Pokedex")
         print("0. Salir")
         print("")
