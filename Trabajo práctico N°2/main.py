@@ -1,18 +1,9 @@
-"""
-Tipo de Pokémon	Poder de combate (PC)
-Muy débil       50–200
-Débil       	200–500
-Intermedio	   500–1000
-Fuerte	      1000–2000
-Muy fuerte    2000–3200
-"""
 import os
 import json
-from menu import mostrar_menu
+from menu import mostrar_menu, importar_json
 from Estructuras import HashSet
 
 os.system("cls") # Limpiar la terminal
-
 
 class Pokemon:
     def __init__(self, id, nombre, tipo, poder_combate):
@@ -27,13 +18,9 @@ class Pokemon:
             f"Tipo: {self.tipo} | "
             f"PC: {self.poder_combate}")
     
-
 if __name__ == "__main__":
-    ruta = os.path.join(os.path.dirname(__file__), "pokemones.json")
-
-    with open(ruta, "r") as file:
-        pokemones_data = json.load(file)
-
+    
+    pokemones_data, medallas_data = importar_json()
     pokemones = []
 
     for p in pokemones_data:
@@ -45,12 +32,6 @@ if __name__ == "__main__":
         )
         pokemones.append(pokemon)
         
-    with open(os.path.join(os.path.dirname(__file__), "medallas.json"), "r") as file2:
-        medallas_data = json.load(file2)
-
     medallas = HashSet()
-
-    for m in range(0):
-        medallas.agregar(medallas_data[m])
             
     mostrar_menu(pokemones, medallas)

@@ -6,9 +6,21 @@ Centro Pokémon (queue)
 Transferencias (stack)
 """
 import time, random
-from Estructuras import Queue, ListaEnlazada, Stack
+from Estructuras import Queue, ListaEnlazada, Stack, HashSet
+import json, os
+with open(os.path.join(os.path.dirname(__file__), "gimnasios.json"), "r") as file:
+    gimnasios_data = json.load(file)
 
-
+def pedir_entero(mensaje, min=None, max=None):
+    while True:
+        try:
+        except ValueError:
+            print(" Debe ingresar un número entero.")
+            continue
+        if (min is not None and valor < min) or (max is not None and valor > max):
+            continue
+        return valor
+    
 class Entrenador:
     def __init__(self):
         self.equipo = []
@@ -79,6 +91,34 @@ class Entrenador:
 
         print("Todos los Pokémon fueron curados.")
 
+    def desafiar_gimnasio(self, medallas):
+            print("\n=== Gimnasios ===")
+            for gimnasio in gimnasios_data:
+                print(f'{gimnasio["id"]}. {gimnasio["nombre"]} - Líder: {gimnasio["lider"]}')
+
+            opcion = pedir_entero("\nElegi un gimnasio: ", min=1, max=len(gimnasios_data))
+
+            gimnasio = None
+
+                if g["id"] == opcion:
+                    break
+
+            if gimnasio is None:
+                return
+
+            print(f"\nEntraste al {gimnasio['nombre']}.")
+            print(f"¡{gimnasio['lider']} te desafía a una batalla!")
+
+
+            if random.choice([True, False]):
+                print("\n¡Ganaste la batalla!")
+
+                if medallas.agregar(gimnasio["medalla"]):
+                    print(f"Obtuviste la {gimnasio['medalla']}.")
+                else:
+                    print(f"Ya tenías la {gimnasio['medalla']}.")
+            else:
+                print("\nPerdiste la batalla...")
     # métodos para transferir y deshacer transferencias:
 
     def transferir_pokemon(self, nombre):
@@ -167,25 +207,19 @@ class Entrenador:
         menores = []
 
         for pokemon in lista[1:]:
-
             if pokemon.poder_combate > pivote.poder_combate:
                 mayores.append(pokemon)
             else:
                 menores.append(pokemon)
-
         return self.quick_sort_poder(mayores) + [pivote] + self.quick_sort_poder(menores)
 
     def ordenar_pc_poder(self):
 
         lista = self.pc.obtener_lista()
-
         lista = self.quick_sort_poder(lista)
-
         self.pc.limpiar()
-
         for pokemon in lista:
             self.pc.agregar(pokemon)
-
         print("\n--- PC ordenada por poder de combate ---")
         for pokemon in lista:
             print(f"{pokemon.nombre} - CP: {pokemon.poder_combate}")
@@ -194,33 +228,25 @@ class Entrenador:
         
     def buscar_pokemon_equipo(self, nombre):
         """va 1 por 1, complejidad O(n) wacho"""
-
         for pokemon in self.equipo:
-
             if pokemon.nombre.lower() == nombre.lower():
                 print(f"{pokemon.nombre} está en el equipo.")
                 return pokemon
-
         print("Ese Pokémon no está en el equipo.")
         return None
     
     def buscar_pokedex(self, lista, id_buscado):
         """elimina la mitad de la lista en cada iteración, complejidad O(log n), mas tranki piola sin berretin"""
-
         izquierda = 0
         derecha = len(lista) - 1
-
         while izquierda <= derecha:
 
             medio = (izquierda + derecha) // 2
 
             if lista[medio].id == id_buscado:
                 return lista[medio]
-
             elif id_buscado < lista[medio].id:
                 derecha = medio - 1
-
             else:
                 izquierda = medio + 1
-
         return None

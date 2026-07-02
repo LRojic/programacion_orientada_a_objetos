@@ -31,7 +31,7 @@
     },
     {
         "id": 6,
-        "nombre": "Gimnasio de Ciudad Azafrán",
+        "nombre": "Gimnasio de Ciudad Azafran",
         "lider": "Sabrina",
         "medalla": "Medalla Pantano"
     },
@@ -39,7 +39,7 @@
         "id": 7,
         "nombre": "Gimnasio de Isla Canela",
         "lider": "Blaine",
-        "medalla": "Medalla Volcán"
+        "medalla": "Medalla Volcan"
     },
     {
         "id": 8,
